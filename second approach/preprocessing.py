@@ -23,7 +23,7 @@ stemmer = PorterStemmer()
 
 
 def stemm(data):
-    text = [stemmer.stem(w) for w in data]
+    _ = [stemmer.stem(w) for w in data]
     return data
 
 
