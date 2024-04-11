@@ -1,3 +1,4 @@
+from operator import index
 import pandas as pd
 import re
 from nltk.tokenize import word_tokenize
@@ -7,7 +8,7 @@ from nltk.stem import PorterStemmer
 
 def clean_text(text):
     text = text.lower()
-    text = re.sub("<b />", "", text)
+    text = re.sub("<br />", "", text)
     text = re.sub(r"https\S+|www\S+|http\S+", "", text, flags=re.MULTILINE)
     text = re.sub(r"\@W+|\#", "", text)
     text = re.sub(r"[^\w\s]", "", text)
@@ -27,7 +28,7 @@ def stemm(data):
     return data
 
 
-df = pd.read_csv("./IMDB Dataset.csv")
+df = pd.read_csv("./IMDB Dataset.csv", index_col="id")
 
 df["review"] = df["review"].apply(clean_text)
 
